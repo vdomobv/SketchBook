@@ -1,8 +1,20 @@
+import Wrapper from "./styles";
+
 function Profile() {
-    return <div>
+  return (
+    <Wrapper className="root">
       <h1>Profile</h1>
-    </div>;
-  }
-  
-  export default Profile;
-  
+      <div>
+        <h2>비밀번호 변경</h2>
+      </div>
+      <div>
+        <h2>기기연결</h2>
+        <p>기기 연결이 안되어 있어요.</p>
+        <a href="">기기 연결하러 가기</a>
+      </div>
+      <img src="front-end\public\images\logo_with.png" alt="" />
+    </Wrapper>
+  );
+}
+
+export default Profile;
