@@ -11,6 +11,7 @@ import Check from "./pages/Check/index";
 import Play from "./pages/Play/index";
 import Profile from "./pages/Profile/index";
 import Code from "./pages/Code/index";
+import NotFound from "./pages/NotFound/index";
 ///////////////////////////////////
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/code",
     element: <Code />,
+  },
+  {
+    path: "/*",
+    element: <NotFound />,
   },
 ]);
 
