@@ -6,6 +6,7 @@ import Password from "./pages/Password/index";
 import Connect from "./pages/Connect/index";
 import Guide from "./pages/Guide/index";
 import Books from "./pages/Books/index";
+import Print from "./pages/Print/index";
 import Check from "./pages/Check/index";
 import Play from "./pages/Play/index";
 import Profile from "./pages/Profile/index";
