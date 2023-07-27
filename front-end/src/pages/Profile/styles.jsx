@@ -36,9 +36,15 @@ img{
     font-weight : bold;
   }
 
-  span{
+  h2 span{
     color: #A451F7;
   }
+
+  .message{
+    font-size : 12px;
+  }
+
+
 `
 
 export default Wrapper;
