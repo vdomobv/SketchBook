@@ -2,9 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // CSS
 import "./App.css";
 
-// Components
-import Header from "./components/Header/index";
-
 import Main from "./pages/Main/index";
 import Password from "./pages/Password/index";
 import Connect from "./pages/Connect/index";
@@ -63,7 +60,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div>
-      <Header></Header>
       <RouterProvider router={router} />
     </div>
   );
