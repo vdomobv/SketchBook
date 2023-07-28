@@ -3,16 +3,14 @@ import Wrapper from "./styles";
 
 function Guide() {
   return (
-    <div>
+    <>
       <Header />
       <Wrapper>
         <div className="box">
-          <div className="header">
-            <h2>
-              스케치북, <span>어떻게</span> 이용하나요?
-            </h2>
-            <img src="" alt="" />
-          </div>
+          <h2>
+            스케치북, <span>어떻게</span> 이용하나요?
+            <img src={process.env.PUBLIC_URL + '/assets/emoji.png'} alt="" />
+          </h2>
           <ol>
             <li>
               기기 연결을 해주세요. 기기 연결을 아직 하지 않았다면, 아래 버튼을
@@ -27,14 +25,15 @@ function Guide() {
             </li>
           </ol>
           <div className="btndiv">
-            <button className="btn" type="button">
-              기기 연결하기
-            </button>
+            <a href="/connect">
+              <button type="button">
+                기기 연결하기
+              </button>
+            </a>
           </div>
         </div>
       </Wrapper>
-      ;
-    </div>
+    </>
   );
 }
 

@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     margin: 100px;
     background-color: #f8f8f8;
     border-radius: 10px;
-    padding: 6% 8%;    
+    padding: 6% 13%;    
   }
   
   ol{
