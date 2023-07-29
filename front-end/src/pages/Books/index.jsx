@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 // import Wrapper from './styles';
 
 // bootstrap
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 // Components
 import Header from "../../components/Header";
+import BookCard from '../../components/BookCard';
 
 // dummy-data
 import bookData from '../../dummy-data/bookData';
@@ -24,18 +24,14 @@ function Books() {
 
   return <div>
     <Header />
-    <h3>검색기능 넣을겁니당</h3>
+    <br />
+    <h4>검색기능 넣을겁니당</h4>
     <br />
     <div class="container">
-      <Row xs={1} md={2} lg={3} className="g-4">
+      <Row xs={1} md={1} lg={2} xl={3} className="g-4">
         {books.map((book) => (
           <Col key={book.id}>
-            <Card style={{ width: '25rem' }}>
-              <Card.Img variant="top" src={book.bookcover} style={{ width: '25rem', height: '30rem' }} />
-              <Card.Body>
-                <Card.Title>{book.title}</Card.Title>
-              </Card.Body>
-            </Card>
+            <BookCard book={book} />
           </Col>
         ))}
       </Row>
