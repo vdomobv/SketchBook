@@ -45,9 +45,17 @@ const Wrapper = styled.div`
     border-radius: 8px;
     border: 1px solid #a451f7;
     background-color: #ffffff;
-    padding: 15px 25px;
+    padding: 15px 0;
     font-weight: bold;
     font-size: 20px;
+    width : 177px;
+  }
+
+  .timerCount{
+    text-align: center;
+    margin-top : 20px;
+    font-size: 60px;
+    font-weight: bold;
   }
   `;
   
