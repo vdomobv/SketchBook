@@ -17,19 +17,20 @@ function BookCard({ book }) {
 
   return (
     <>
-      <Card style={{ width: '25rem' }} onClick={handleModalShow}>
-        <Card.Img variant="top" src={book.bookcover} style={{ width: '25rem', height: '30rem' }} />
-        <Card.Body>
+        <Card style={{ width: '25rem', margin: '20px 0px 20px 0px'}} onClick={handleModalShow}>
+          <Card.Img variant="top" src={book.bookcover} style={{ width: '24.9rem', height: '30rem' }} />
+          {/* <Card.Body>
           <Card.Title style={{ textAlign: 'right' }}>{book.title}</Card.Title>
-        </Card.Body>
-      </Card>
+        </Card.Body> */}
+        </Card>
 
-      <Modal show={showModal} onHide={handleModalClose} size="xl">
-        <Modal.Header closeButton>
-          {/* <Modal.Title>{book.title}</Modal.Title> */}
-        </Modal.Header>
-        <Modal.Body>
+        <Modal show={showModal} onHide={handleModalClose} size="xl">
+          <Modal.Header closeButton>
+            {/* <Modal.Title>{book.title}</Modal.Title> */}
+          </Modal.Header>
+          <Modal.Body>
           <Wrapper>
+
             <div style={{ flex: 1 }}>
               <img src={book.bookcover} alt={book.title} style={{ width: '30rem', height: '35rem' }} />
             </div>
@@ -37,7 +38,8 @@ function BookCard({ book }) {
               <h2>{book.title}</h2>
               <h5>{book.writer} 작가</h5>
               <br />
-              <p>{book.summary}</p>
+              {/* <p>{book.summary}</p> */}
+              <p dangerouslySetInnerHTML={{ __html: book.summary.replace(/\n/g, '<br>') }} />
 
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '100px' }}>
                 <Button
@@ -55,10 +57,10 @@ function BookCard({ book }) {
                   시작하기
                 </Button>
               </div>
-           </div>
-          </Wrapper>
-        </Modal.Body>
-      </Modal>
+            </div>
+      </Wrapper>
+          </Modal.Body>
+        </Modal>
     </>
   );
 }
