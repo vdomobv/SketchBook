@@ -6,17 +6,20 @@ import PasswordModal from '../../components/PasswordModal';
 function Main() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleModal = () => {
+  const openModal = () => {
     console.log('handleModal');
     setIsModalOpen(true);
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   }
 
   return (
     <Wrapper className='root'>
       <h1>Main</h1>
-      <span onClick={handleModal} >test</span>
-      <PasswordModal isModalOpen={isModalOpen} />
-
+      <span onClick={openModal}>test</span>
+      <PasswordModal closeModal={closeModal} isModalOpen={isModalOpen} />
     </Wrapper>);
 }
 
