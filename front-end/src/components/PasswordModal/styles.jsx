@@ -32,6 +32,14 @@ h4{
     padding: 10px;
     font-weight : bold ;
 }
+
+.valid-text{
+    text-align: left;
+    padding-left: 10px;
+    font-size: 12px;
+    color : red;
+    margin-top: 5px;
+}
 `
 
 export default Wrapper;
