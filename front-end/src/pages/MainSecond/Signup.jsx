@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { Link } from 'react-router-dom';
 import Wrapper from "./styles";
+import axios from "axios";
+
 
 export default function Login() {
   const [useremail, setUseremail] = useState("");
@@ -67,6 +69,21 @@ export default function Login() {
     // 예시: 인증 코드가 유효한 경우, setVerified(true)로 상태를 업데이트합니다.
     // 예시: 인증 코드가 유효하지 않은 경우, setError(true)로 상태를 업데이트합니다.
   };
+
+  const signup = (e) => {
+    e.preventDefault();
+    axios
+      .post("/api/users/register", {
+        email: useremail,
+        password: password,
+      })
+      .then((res)=> {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   return (
     <Wrapper>
@@ -157,7 +174,7 @@ export default function Login() {
             <span className='warningmsg'>{confirmPasswordWarning}</span>
           </div>
 
-          <button type="submit" className='start'>시작하기</button>
+          <button type="submit" className='start' onClick={signup}>시작하기</button>
 
         </form>
       </div>
