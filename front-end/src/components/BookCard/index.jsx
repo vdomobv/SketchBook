@@ -19,9 +19,9 @@ function BookCard({ book }) {
     <>
         <Card style={{ width: '25rem', margin: '20px 0px 20px 0px'}} onClick={handleModalShow}>
           <Card.Img variant="top" src={book.bookcover} style={{ width: '24.9rem', height: '30rem' }} />
-          {/* <Card.Body>
-          <Card.Title style={{ textAlign: 'right' }}>{book.title}</Card.Title>
-        </Card.Body> */}
+          <Card.Body>
+          <Card.Title style={{ textAlign: 'center' }}>{book.title}</Card.Title>
+        </Card.Body>
         </Card>
 
         <Modal show={showModal} onHide={handleModalClose} size="xl">
