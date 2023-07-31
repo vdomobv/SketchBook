@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
+
+// Bootstrap
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Pagination from 'react-bootstrap/Pagination';
+
+// Styles, Icons
 import { Wrapper, IconWrap } from './styles';
 import { BiSearchAlt2 } from "react-icons/bi";
+
+// Components
 import Header from '../../components/Header';
 import BookCard from '../../components/BookCard';
+
 import bookData from '../../dummy-data/bookData';
 
 function Books() {
