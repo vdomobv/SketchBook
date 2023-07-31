@@ -1,0 +1,45 @@
+// 회원정보, 동화정보는 MongoDB를 사용
+// OTP, 관절 포인트는 Redis를 사용
+
+const express = require("express");
+const bodyParser = require("body-parser");
+const helmet = require("helmet");
+const cors = require("cors");
+const morgan = require("morgan");
+const dotenv = require("dotenv");
+const redis = require("redis");
+
+const app = express();
+dotenv.config();
+
+/* middleware */
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(morgan("tiny"));
+app.use(helmet());
+
+/* PORT 지정 */
+const PORT = process.env.PORT;
+
+const { dbConnect } = require("./module/dbConnect");
+
+app.get("/", (req, res) => res.send("안녕하세요!"));
+
+const client = redis.createClient({
+  url: process.env.REDIS_URL,
+});
+
+// on the connection
+client.on("connect", () => console.log("Redis에 연결되었습니다."));
+
+client.connect();
+
+dbConnect();
+
+app.listen(PORT, () => console.log(`${PORT}번에 잘 접속했습니다.`));
