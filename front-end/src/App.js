@@ -7,11 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 import Main from "./pages/Main/index";
-import Password from "./pages/Password/index";
+import MainSecond from "./pages/MainSecond/index";
 import Connect from "./pages/Connect/index";
 import Guide from "./pages/Guide/index";
 import Books from "./pages/Books/index";
-import Print from "./pages/Print/index";
 import Check from "./pages/Check/index";
 import Play from "./pages/Play/index";
 import Profile from "./pages/Profile/index";
@@ -21,12 +20,12 @@ import NotFound from "./pages/NotFound/index";
 
 const router = createBrowserRouter([
   {
-    path: "/main",
+    path: "/main/login",
     element: <Main />,
   },
   {
-    path: "/password",
-    element: <Password />,
+    path: "/main/signup",
+    element: <MainSecond />,
   },
   {
     path: "/connect",
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
   {
     path: "/books",
     element: <Books />,
-  },
-  {
-    path: "/Print",
-    element: <Print />,
   },
   {
     path: "/check",
