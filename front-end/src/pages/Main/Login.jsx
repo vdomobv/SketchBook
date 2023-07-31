@@ -53,7 +53,7 @@ export default function Login() {
 
   const login = (e) => {
     e.preventDefault();
-    console.log(useremail);
+    // console.log(useremail);
     axios
       .post("/api/users/login", {
         email: useremail,
