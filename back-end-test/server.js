@@ -2,7 +2,7 @@
 // OTP, 관절 포인트는 Redis를 사용
 
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -14,12 +14,12 @@ dotenv.config();
 
 /* middleware */
 app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(
+//   express.urlencoded({
+//     extended: true,
+//   })
+// );
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(helmet());
@@ -40,6 +40,15 @@ client.on("connect", () => console.log("Redis에 연결되었습니다."));
 
 client.connect();
 
-dbConnect();
+dbConnect().then(() => {
+  try {
+      app.listen(PORT, () => {
+          console.log(`${PORT}번에 잘 접속했습니다.`);
+      })
+  } catch (error) {
+      console.log('서버에 접속하지 못했습니다.')
+  }   
+}).catch(error => {
+  console.log("MongoDB에 연결되지 못했습니다");
+})
 
-app.listen(PORT, () => console.log(`${PORT}번에 잘 접속했습니다.`));
