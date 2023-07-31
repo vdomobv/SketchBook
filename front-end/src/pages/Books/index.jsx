@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Pagination from 'react-bootstrap/Pagination';
-import { Wrapper } from './styles';
+import { Wrapper, IconWrap } from './styles';
+import { BiSearchAlt2 } from "react-icons/bi";
 import Header from '../../components/Header';
 import BookCard from '../../components/BookCard';
 import bookData from '../../dummy-data/bookData';
@@ -24,6 +25,7 @@ function Books() {
       const formattedSearchTerm = searchTerm.trim().toLowerCase().replace(/\s+/g, ''); // 띄어쓰기 제거 및 소문자로 변환
       const filteredBooks = books.filter((book) => book.title.toLowerCase().replace(/\s+/g, '').includes(formattedSearchTerm));
       setSearchedBooks(filteredBooks);
+      setCurrentPage(1); // 검색 결과가 바뀌면 페이지를 1로 초기화
     } else {
       setSearchedBooks([]);
     }
@@ -65,9 +67,11 @@ function Books() {
   return (
     <div>
       <Header />
-      <div>
         {/* 검색 입력 상자와 검색 버튼 추가 */}
-        <div className="input-group mb-3" style={{ margin: '50px', width: '700px', display: 'flex', justifyContent: 'center' }}>
+        <IconWrap>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="input-group mb-3"
+          style={{ margin: '50px', width: '700px', height: '50px' }}>
           <input
             type="text"
             className="form-control"
@@ -75,14 +79,16 @@ function Books() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleKeyPress}
-            style={{ boxShadow: 'none', borderColor: '#5b9c90' }} // shadow 효과 없애기
+            style={{ boxShadow: 'none', borderColor: '#9D4FE0' }} // shadow 효과 없애기
           />
-          <button className="btn btn-primary" onClick={handleSearch} style={{ backgroundColor: '#5b9c90', border: 'none'}}>
-            검색하기
-          </button>
+              <button className="btn btn-primary" onClick={handleSearch} style={{ backgroundColor: '#9D4FE0', border: 'none' }}>
+                <BiSearchAlt2 />
+              </button>
         </div>
       </div>
+          </IconWrap>
       <br />
+      {/* BookCard 컴포넌트 */}
       <div className="container">
         <Row xs={1} md={1} lg={2} xl={3} className="g-4">
           {currentBooks.map((book) => (
@@ -94,6 +100,7 @@ function Books() {
       </div>
       <br />
       <Wrapper>
+        {/* 페이지네이션 */}
         <Pagination>
           {[...Array(Math.ceil((searchTerm ? searchedBooks.length : books.length) / booksPerPage)).keys()].map((number) => (
             <Pagination.Item
