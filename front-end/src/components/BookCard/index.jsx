@@ -30,11 +30,9 @@ function BookCard({ book }) {
 
     printWindow.document.write(printContent);
 
-    // Close the document after printing is completed
-    printWindow.document.close();
-
-    // Trigger the print dialog
-    printWindow.print();
+    setTimeout(() => {
+      printWindow.print();
+    }, 1);
   };
 
   return (
