@@ -13,7 +13,11 @@ import Guide from "./pages/Guide/index";
 import Books from "./pages/Books/index";
 import Check from "./pages/Check/index";
 import SoundCheck from "./pages/Check/SoundCheck";
-import MotionCheck from "./pages/Check/MotionCheck/index";
+import MotionCheck from "./pages/Check/MotionCheck";
+import CaptureCheck from "./pages/Check/CaptureCheck";
+import DistanceCheck from "./pages/Check/DistanceCheck";
+import CombineCheck from "./pages/Check/CombineCheck";
+import Ready from "./pages/Check/Ready";
 import Play from "./pages/Play/index";
 import Profile from "./pages/Profile/index";
 import Code from "./pages/Code/index";
@@ -50,8 +54,12 @@ const router = createBrowserRouter([
     path: "/check",
     element: <Check />,
     children: [
+      { path: "capture", element: <CaptureCheck /> },
+      { path: "distance", element: <DistanceCheck /> },
       { path: "motion", element: <MotionCheck /> },
       { path: "sound", element: <SoundCheck /> },
+      { path: "combine", element: <CombineCheck /> },
+      { path: "ready", element: <Ready /> },
     ],
   },
   {
