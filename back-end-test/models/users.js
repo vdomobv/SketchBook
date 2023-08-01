@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 // 토큰을 쿠키에 저장하기 위해 사용
 app.use(cookieParser());
@@ -86,5 +86,19 @@ userSchema.methods.generateToken = function (cb) {
   });
 };
 
-const User = mongoose.model("User", userSchema);
-module.exports = { User };
+// auth 인증 - 복호화 (토큰을 디코드)
+userSchema.statics.findByToken = function(token, cb) {
+  var user = this
+
+  jwt.verify(token, 'secretToken', function(err, decoded) {
+    // 유저 아이디를 이용해서 유저를 찾은 다음에
+    // 클라이언트에서 가져온 token과 DB에 보관된 토큰이 일치하는지 확인
+    user.findOne({"_id": decoded, "token": token}, function(err, user) {
+      if (err) return cb(err)
+      cb(null, user)
+    })
+  })  
+}
+
+const Users = mongoose.model("User", userSchema);
+module.exports = { Users };
