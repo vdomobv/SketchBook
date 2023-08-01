@@ -3,7 +3,7 @@
 
 const express = require("express");
 const helmet = require("helmet");
-// const cors = require("cors");
+const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const redis = require("redis");
@@ -18,7 +18,7 @@ app.use(
     extended: true,
   })
 );
-// app.use(cors());
+app.use(cors());
 app.use(morgan("tiny"));
 app.use(helmet());
 
@@ -58,3 +58,8 @@ dbConnect()
 const userRouter = require("./routers/usersRouter.js");
 
 app.use("/api/users", userRouter);
+
+// deviceDB();
+const deviceRouter = require("./routers/deviceRouter.js");
+
+app.use("/api/devices", deviceRouter);
