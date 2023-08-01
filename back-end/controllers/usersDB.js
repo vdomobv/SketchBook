@@ -66,7 +66,6 @@ function login(req, res) {
 function auth(req, res) {
   // 여기까지 미들웨어(auth.js)를 통과해 왔다는 이야기는 인증이 true
   // 클라이언트에게 유저 정보를 전달
-  Auth().then(
     res.status(200).json({
       _id: req.user._id,
       isAdmin: req.user.role == 0 ? false : true, // role이 0이면 일반 유저, 그외는 관리자
@@ -74,7 +73,6 @@ function auth(req, res) {
       email: req.user.email,
       role: req.user.role,
     })
-  );
 }
 
 function logout(req, res) {
