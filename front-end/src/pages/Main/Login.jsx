@@ -54,7 +54,6 @@ export default function Login() {
 
   const login = (e) => {
     e.preventDefault();
-    
     axios
       .post("/api/users/login", {
         email: useremail,
@@ -66,7 +65,7 @@ export default function Login() {
           alert('일치하는 회원정보가 없습니다.')
           return
         } else {
-        navigate('/books'); // 기기 연결 페이지로 이동하게 변경 예정
+        navigate('/main/choose'); // 기기 연결 페이지로 이동하게 변경
         }
       })
       .catch((err) => {
