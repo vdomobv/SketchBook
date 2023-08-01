@@ -60,23 +60,25 @@ const SoundCheck = () => {
     <SoundWrapper>
       <h2>4. 음성 인식 확인하기</h2>
       <div className="box">
-        <img
-          className="volume"
-          src={process.env.PUBLIC_URL + "/assets/volume.png"}
-        />
-        <div className="sound">
-          <img src={process.env.PUBLIC_URL + "/assets/sound.png"} alt="" />
-          <div
-            className="gauge"
-            style={{
-              width: `${volume}px`,
-            }}
+        <div className="images">
+          <img
+            className="volume"
+            src={process.env.PUBLIC_URL + "/assets/volume.png"}
           />
+          <div className="sound">
+            <img src={process.env.PUBLIC_URL + "/assets/sound.png"} alt="" />
+            <div
+              className="gauge"
+              style={{
+                width: `${volume}px`,
+              }}
+            />
+          </div>
+        </div>
         <div className="button">
           <button onClick={handleMicrophone}>
             {audioStream ? "끄기" : "켜기"}
           </button>
-        </div>
         </div>
       </div>
       <h4>
