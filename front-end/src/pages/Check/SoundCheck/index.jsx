@@ -79,6 +79,9 @@ const SoundCheck = () => {
         </div>
         </div>
       </div>
+      <h4>
+        "출발"이라고 외쳐 보세요!
+      </h4>
     </SoundWrapper>
   );
 };
