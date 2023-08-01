@@ -28,7 +28,7 @@ app.use(
 );
 app.use(express.json());
 
-app.post("/register", (req, res) => {
+app.post("/api/users/register", (req, res) => {
   // 회원가입할 때 필요한 정보들을
   // client에서 가져오면 그것들을 db에 넣는다.
   const user = new User(req.body);

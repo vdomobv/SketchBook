@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Wrapper from "./styles";
+import axios from "axios";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [useremail, setUseremail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -68,11 +71,35 @@ export default function Login() {
     // 예시: 인증 코드가 유효하지 않은 경우, setError(true)로 상태를 업데이트합니다.
   };
 
+  const signup = (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setConfirmPasswordWarning('비밀번호가 일치하지 않습니다.');
+      alert("비밀번호가 일치하지 않습니다.")
+      return;
+    } else {
+      alert("회원가입 성공")
+      navigate('/main/login');
+    }
+    axios
+      .post("/api/users/register", {
+        email: useremail,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
   return (
     <Wrapper>
       <div className="login">
         <div className="login-signup-buttons">
-        <Link to="/main/login" style={{ textDecoration: "none", color: "gray" }}>
+          <Link to="/main/login" style={{ textDecoration: "none", color: "gray" }}>
             <h3>로그인</h3>
           </Link>
           <Link to="/main/signup" style={{ textDecoration: "none", color: "gray" }}>
@@ -108,11 +135,11 @@ export default function Login() {
                 onChange={handleVerificationCodeChange}
               />
             </InputGroup>
-            <button onClick={handleVerifyCode} className='duplicatecheck' style={{width: '67.34px'}}>인증</button>
+            <button onClick={handleVerifyCode} className='duplicatecheck' style={{ width: '67.34px' }}>인증</button>
           </div>
 
           <div>
-            <InputGroup style={{ height: '45px' , marginBottom: '10px' }}>
+            <InputGroup style={{ height: '45px', marginBottom: '10px' }}>
               <Form.Control
                 type={showPassword ? "text" : "password"}
                 placeholder="비밀번호"
@@ -157,9 +184,8 @@ export default function Login() {
             <span className='warningmsg'>{confirmPasswordWarning}</span>
           </div>
 
-          <button type="submit" className='start'>시작하기</button>
+          <button type="submit" className='start' onClick={signup}>시작하기</button>
 
-          <p className="forgot-password"> <a href="/forgot-password">비밀번호 찾기</a></p>
         </form>
       </div>
     </Wrapper>
