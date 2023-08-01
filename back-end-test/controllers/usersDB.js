@@ -1,12 +1,10 @@
-const { Users } = require("../models/users.js");
+const { User } = require("../models/users.js");
 const { Auth } = require("../middlewares/auth.js");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 
 function register(req, res) {
   // 회원가입할 때 필요한 정보들을
   // client에서 가져오면 그것들을 db에 넣는다.
-  const user = new Users(req.body);
+  const user = new User(req.body);
   // 정보 저장, 에러 시 json 형식으로 전달
   user.save((err, userInfo) => {
     if (err) return res.json({ success: false, err });
@@ -18,7 +16,7 @@ function register(req, res) {
 
 function login(req, res) {
   // 요청된 이메일을 데이터베이스에서 있는지 찾는다
-  Users.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
         loginSuccess: false,
@@ -35,7 +33,7 @@ function login(req, res) {
         });
 
       // 비밀번호가 맞다면 토큰을 생성
-      user.generateToken((err, user) => {
+      user.generateToken(req.body.password, (err, user) => {        
         if (err) return res.status(400).send(err);
 
         // 정상적이라면 토큰을 쿠키 혹은 로컬스토리지에 저장
@@ -48,7 +46,6 @@ function login(req, res) {
     });
   });
 }
-
 
 function auth(req, res) {
   // 여기까지 미들웨어(auth.js)를 통과해 왔다는 이야기는 인증이 true
@@ -65,7 +62,7 @@ function auth(req, res) {
 }
 
 function logout(req, res) {
-  Users.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
     if (err)
       return res.json({
         success: false,
