@@ -6,7 +6,6 @@ const SoundCheck = () => {
   const [volume, setVolume] = useState(0);
 
   const handleMicrophone = () => {
-    console.log(audioStream);
     if (audioStream) {
       setAudioStream(null);
       setVolume(0);
@@ -24,6 +23,7 @@ const SoundCheck = () => {
 
       getMicrophone();
     }
+    console.log(audioStream);
   };
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const SoundCheck = () => {
       <h2>4. 음성 인식 확인하기</h2>
       <div className="box">
         <div className="images">
-          <img
+          <img alt="volume-icon"
             className="volume"
             src={process.env.PUBLIC_URL + "/assets/volume.png"}
           />
