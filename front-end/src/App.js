@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Link
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // CSS
 import "./App.css";
@@ -13,6 +13,7 @@ import Guide from "./pages/Guide/index";
 import Books from "./pages/Books/index";
 import Check from "./pages/Check/index";
 import SoundCheck from "./pages/Check/SoundCheck";
+import MotionCheck from "./pages/Check/MotionCheck/index";
 import Play from "./pages/Play/index";
 import Profile from "./pages/Profile/index";
 import Code from "./pages/Code/index";
@@ -41,12 +42,12 @@ const router = createBrowserRouter([
     element: <Books />,
   },
   {
-    path: "/check",   
+    path: "/check",
     element: <Check />,
-  },
-  {
-    path: "/check/4",   
-    element: <SoundCheck />,
+    children: [
+      { path: "motion", element: <MotionCheck /> },
+      { path: "sound", element: <SoundCheck /> },
+    ],
   },
   {
     path: "/play",
