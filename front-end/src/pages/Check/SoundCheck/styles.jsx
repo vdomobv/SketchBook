@@ -23,7 +23,7 @@ padding : 30px;
 }
 
 .gauge{
-    max-width: 100%;
+    max-width: 90%;
     height: 48%;
     background-color: black;
     position: absolute;
@@ -44,7 +44,10 @@ button{
     background-color : #D3B2FF;
 }
 
-
+h4{
+    font-weight : bold;
+    margin : 20px;
+}
 `;
 
 export default SoundWrapper;
