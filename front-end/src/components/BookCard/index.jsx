@@ -42,6 +42,7 @@ function BookCard({ book }) {
     }, 500);
   };
 
+
   return (
     <>
       <FontWrap>
