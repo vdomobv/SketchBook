@@ -12,13 +12,16 @@ function Ready() {
         <h2>시작하기를 눌러볼까요!</h2>
       <br />
       <div>
+      <div className="btndiv">
+            <a href="/play">
         <Button
           variant="outline-primary"
           className="custom-button-style"
-        // onClick={handlePrint}
         >
           시작하기
         </Button>
+        </a>
+        </div>
       </div>
       </div>
     </Wrapper>);
