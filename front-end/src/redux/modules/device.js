@@ -16,6 +16,7 @@ export const soundOff = () => ({ type: SOUNDOFF });
 const initialState = {
   isConnected: false,
   sound: false,
+  step:0,
 };
 
 /* ----------------- 리듀서 ------------------ */
