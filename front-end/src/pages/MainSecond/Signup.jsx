@@ -103,7 +103,7 @@ export default function Signup() {
         password: password,
       })
       .then((res) => {
-        if (res.data.success==false){
+        if (res.data.success===false){
           alert('잘못된 회원 정보입니다.')
           console.log(res)
           return
