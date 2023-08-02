@@ -2,7 +2,7 @@
 // OTP, 관절 포인트는 Redis를 사용
 
 const express = require("express");
-// const helmet = require("helmet");
+const helmet = require("helmet");
 // const cors = require("cors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
@@ -20,7 +20,7 @@ app.use(
 );
 // app.use(cors());
 app.use(morgan("tiny"));
-// app.use(helmet());
+app.use(helmet());
 
 
 /* PORT 지정 */
@@ -29,13 +29,13 @@ const PORT = process.env.PORT;
 app.get("/", (req, res) => res.send("안녕하세요!"));
 
 /* Redis 연결 */
-const client = redis.createClient({
-  url: process.env.REDIS_URL,
-});
+// const client = redis.createClient({
+//   url: process.env.REDIS_URL,
+// });
 
-client.on("connect", () => console.log("Redis에 연결되었습니다."));
+// client.on("connect", () => console.log("Redis에 연결되었습니다."));
 
-client.connect();
+// client.connect();
 
 /* mongoDB 연결 */
 const { dbConnect } = require("./modules/dbConnect");

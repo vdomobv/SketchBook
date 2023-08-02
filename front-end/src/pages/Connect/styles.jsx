@@ -7,6 +7,7 @@ font-family: 'Pretendard-Regular';
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 80vh;
 
   img{
     width : 100px;
@@ -15,7 +16,6 @@ font-family: 'Pretendard-Regular';
 
   h2 {
     font-weight: bold;
-    text-align: center;
   }
   
   span {
@@ -23,11 +23,12 @@ font-family: 'Pretendard-Regular';
   }
   
   .box {
-    margin: 30px;
+    margin-top: 50px;
     background-color: #f8f8f8;
     border-radius: 10px;
-    padding: 5% 11%;    
+    padding: 3% 5%;    
   }
+  
   
   ol{
     margin: 20px 0 40px;
@@ -35,7 +36,7 @@ font-family: 'Pretendard-Regular';
 
   li {
     font-size: 25px;
-    line-height: 50px;
+    line-height: 42px;
   }
   
   .btndiv{
@@ -48,7 +49,7 @@ font-family: 'Pretendard-Regular';
     border-radius: 8px;
     border: 1px solid #a451f7;
     background-color: #ffffff;
-    padding: 15px 0;
+    padding: 10px 20px;
     font-weight: bold;
     font-size: 20px;
     width : 177px;
