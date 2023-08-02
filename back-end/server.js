@@ -41,6 +41,8 @@ client.on("connect", () => console.log("Redis에 연결되었습니다."));
 
 client.connect();
 
+exports.client = client;
+
 /* mongoDB 연결 */
 const { dbConnect } = require("./modules/dbConnect");
 
@@ -63,7 +65,7 @@ const userRouter = require("./routers/usersRouter.js");
 
 app.use("/api/users", userRouter);
 
-// deviceDB();
-// const deviceRouter = require("./routers/deviceRouter.js");
+//deviceDB();
+const deviceRouter = require("./routers/deviceRouter.js");
 
-// app.use("/api/devices", deviceRouter);
+app.use("/api/devices", deviceRouter);
