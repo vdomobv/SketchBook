@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 80vh;
 
   img{
     width : 100px;
@@ -14,7 +15,6 @@ const Wrapper = styled.div`
 
   h2 {
     font-weight: bold;
-    text-align: center;
   }
   
   span {
@@ -22,10 +22,11 @@ const Wrapper = styled.div`
   }
   
   .box {
-    margin: 30px;
+    margin-top: 50px;
+    
     background-color: #f8f8f8;
     border-radius: 10px;
-    padding: 5% 5%;    
+    padding: 3% 5%;    
   }
   
   ol{
@@ -34,20 +35,20 @@ const Wrapper = styled.div`
 
   li {
     font-size: 25px;
-    line-height: 50px;
+    line-height: 42px;
   }
-  
+
   .btndiv{
     display: flex;
     justify-content: center; 
   }
-
+  
   button {
     color: #a451f7;
     border-radius: 8px;
     border: 1px solid #a451f7;
     background-color: #ffffff;
-    padding: 15px 25px;
+    padding: 10px 20px;
     font-weight: bold;
     font-size: 20px;
   }
