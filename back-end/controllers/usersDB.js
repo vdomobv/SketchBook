@@ -1,5 +1,4 @@
 const { User } = require("../models/users.js");
-const { Auth } = require("../middlewares/auth.js");
 const { smtpTransport } = require("../config/email.js")
 const ejs = require('ejs')
 const path = require('path')
