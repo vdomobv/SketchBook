@@ -1,12 +1,14 @@
-const { Users } = require("../models/users.js");
+const { User } = require("../models/users.js");
 const { Auth } = require("../middlewares/auth.js");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+const { smtpTransport } = require("../config/email.js")
+const ejs = require('ejs')
+const path = require('path')
+var appDir = path.dirname(require.main.filename)
 
 function register(req, res) {
   // 회원가입할 때 필요한 정보들을
   // client에서 가져오면 그것들을 db에 넣는다.
-  const user = new Users(req.body);
+  const user = new User(req.body);
   // 정보 저장, 에러 시 json 형식으로 전달
   user.save((err, userInfo) => {
     if (err) return res.json({ success: false, err });
@@ -16,9 +18,25 @@ function register(req, res) {
   });
 }
 
+function idCheck(req, res) {
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (user) {
+      return res.json({
+        registerService: false,
+        message: "중복된 이메일이 있습니다."
+      })
+    } else {
+      return res.json({
+        registerService: true,
+        message: "사용 가능한 이메일입니다."
+      })
+    }
+  })
+}
+
 function login(req, res) {
   // 요청된 이메일을 데이터베이스에서 있는지 찾는다
-  Users.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
         loginSuccess: false,
@@ -35,7 +53,7 @@ function login(req, res) {
         });
 
       // 비밀번호가 맞다면 토큰을 생성
-      user.generateToken((err, user) => {
+      user.generateToken(req.body.password, (err, user) => {        
         if (err) return res.status(400).send(err);
 
         // 정상적이라면 토큰을 쿠키 혹은 로컬스토리지에 저장
@@ -48,7 +66,6 @@ function login(req, res) {
     });
   });
 }
-
 
 function auth(req, res) {
   // 여기까지 미들웨어(auth.js)를 통과해 왔다는 이야기는 인증이 true
@@ -65,7 +82,7 @@ function auth(req, res) {
 }
 
 function logout(req, res) {
-  Users.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
     if (err)
       return res.json({
         success: false,
@@ -77,7 +94,48 @@ function logout(req, res) {
   });
 }
 
+function mail(req, res) {
+  /* min ~ max 까지 랜덤으로 숫자를 생성하는 함수 */
+  var generateRandom = function (min, max) {
+    var ranNum = Math.floor(Math.random()*(max-min+1)) + min
+    return ranNum
+  }
+
+  var number = generateRandom(111111, 999999)
+
+  ejs.renderFile(appDir + '/templates/authMail.ejs', {authCode: number}, function (err, data) {
+    if(err) {
+      console.log(err)
+    }
+    emailTemplate = data
+  })
+
+
+  // console.log(req.body.email)
+
+  let mailOptions = {
+    from: "3BTI: 스케치북, 아이의 상상은 현실이 된다.",
+    to: req.body.email,
+    subject: "회원가입을 위한 인증번호를 입력해주세요.",
+    html: emailTemplate
+  }
+
+  smtpTransport.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error)
+    }
+      console.log("메일이 무사히 전송되었습니다.")
+      res.json({
+        message: "메일이 무사히 전송되었습니다."
+      })
+      smtpTransport.close()
+    })
+
+}
+
 exports.register = register;
+exports.idCheck = idCheck;
 exports.login = login;
 exports.auth = auth;
 exports.logout = logout;
+exports.mail = mail;
