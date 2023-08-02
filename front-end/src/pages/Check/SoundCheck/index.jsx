@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SoundWrapper from "./styles";
 
+import { connect } from "react-redux";
+import { soundOn, soundOff } from "../../../redux/modules/device";
+
 const SoundCheck = () => {
   const [audioStream, setAudioStream] = useState(null);
   const [volume, setVolume] = useState(0);
@@ -9,6 +12,7 @@ const SoundCheck = () => {
     if (audioStream) {
       setAudioStream(null);
       setVolume(0);
+      soundOff(); // 버튼이 '끄기'일 때 soundOff 액션을 dispatch
     } else {
       async function getMicrophone() {
         try {
@@ -16,6 +20,7 @@ const SoundCheck = () => {
             audio: true,
           });
           setAudioStream(stream);
+          soundOn(stream); // 버튼이 '켜기'일 때 soundOn 액션을 dispatch
         } catch (err) {
           console.error("마이크 연결 오류 : ", err);
         }
@@ -88,4 +93,17 @@ const SoundCheck = () => {
   );
 };
 
-export default SoundCheck;
+const mapStateToProps = (state) => {
+  return {
+    sound: state.device.sound,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    soundOn: (audioStream) => dispatch(soundOn(audioStream)),
+    soundOff: () => dispatch(soundOff()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SoundCheck);
