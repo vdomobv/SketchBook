@@ -3,9 +3,8 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 1px 10px -5px black;
+  box-shadow: 0 1px 7px -5px black;
   font-family: 'Pretendard-Regular';
-
 
   .logo{
     width:150px;
@@ -23,7 +22,7 @@ const Wrapper = styled.div`
   a{
     margin : auto 20px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     color: #000000;
     }
   }
